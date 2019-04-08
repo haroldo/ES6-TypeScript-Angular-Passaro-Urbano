@@ -1,23 +1,32 @@
 <div class="container">
-  <div class="oferta">
+ 
+  <div class="oferta" *ngIf="oferta !== undefined">
 
-    <div class="row">
-      <div class="col">
-        <h4>Super Burger - Rodízio de Mini-hambúrger com opção de entrada.</h4>
+  <!--
+  <div class="row">
+    <div class="col">
+      <a [routerLink] = "['/oferta',1]" >Oferta 1 </a>  
+      <a [routerLink] = "['/oferta',3]" >Oferta 3 </a>  
+      <a [routerLink] = "['/oferta',6]" >Oferta 6 </a>  
+     </div>
+  </div>
+-->
+
+      <div class="row">
+        <div class="col">
+          <h4>{{ oferta.descricao_oferta }}</h4>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="img_capa">
-          <img src="/assets/ofertas/1/img1.jpg" />
-        </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img_capa">
+            <img [src]="oferta.imagens[0].url" />
+          </div>
 
-        <div class="thumbnails">
-          <img src="/assets/ofertas/1/img2.jpg" />
-          <img src="/assets/ofertas/1/img3.jpg" />
-          <img src="/assets/ofertas/1/img4.jpg" />
-        </div>
+          <div class="thumbnails">
+            <img *ngFor="let imagem of oferta.imagens" [src]="imagem.url" />
+          </div>
       </div>
 
       <div class="col-md-6">
@@ -30,7 +39,7 @@
 
         <div class="row">
           <div class="col text-center">
-            <h1>R$ 29,90</h1>
+            <h1>{{ oferta.valor }}</h1>
           </div>
         </div>
 
@@ -39,10 +48,34 @@
             <button type="button" class="btn btn-warning btn-lg">Adicionar ao carrinho</button>
           </div>
         </div>
-          
-      </div>
+
+       
+
+
+      
 
     </div>
 
   </div>
+  
+  </div>
+
+  <div class="row" style="margin-bottom: 25px;margin-bottom: 150px">
+    <div class="col">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active"  routerLink="como-usar">ComoUsar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active"  routerLink="onde-fica">Onde Fica</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <!-- <div class="tab-pane fade show active" id="como-usar" role="tabpanel" aria-labelledby="home-tab">...Como usar</div>
+            <div class="tab-pane fade" id="onde-fica" role="tabpanel" aria-labelledby="profile-tab">...Onde fica</div> -->
+            <router-outlet></router-outlet>
+          </div>
+      </div>
+  </div>
+  
 </div>
