@@ -18,7 +18,7 @@ import { catchError } from 'rxjs/operators'
 export class TopoComponent implements OnInit {
 
   public ofertas: Observable<Oferta[]>
-  public ofertas2: Oferta[]
+  //public ofertas2: Oferta[]
 
   private subjectPesquisa: Subject<String> = new Subject<string>()
 
@@ -44,10 +44,11 @@ export class TopoComponent implements OnInit {
     
     );
 
-    this.ofertas.subscribe((ofertas:Oferta[]) => {
+    /*this.ofertas.subscribe((ofertas:Oferta[]) => {
       console.log(ofertas)
      this.ofertas2 = ofertas    
     })
+    */
     
   }
 /*

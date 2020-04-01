@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router'
 import { OfertasService } from '../ofertas.service'
 import { Oferta } from '../shared/oferta.model'
 import { Observable ,interval, Observer, Subscription } from 'rxjs'
+import { CarrinhoService } from '../carrinho.service'
 
 
 @Component({
@@ -22,13 +23,19 @@ export class OfertaComponent implements OnInit,OnDestroy {
   private tempoObservableSubscription: Subscription
   private meuObservable: Subscription 
   */
-  constructor(ofertaService: OfertasService,route: ActivatedRoute,    
+  constructor(
+    ofertaService: OfertasService,
+    route: ActivatedRoute,
+    private carrinhoService: CarrinhoService    
     ) { 
       this.ofertaService = ofertaService
       this.route = route
     }
 
   ngOnInit() {
+
+
+    //console.log('itens exibidos pela oferta ',this.carrinhoService.exibirItens())
     //console.log('id recuperado na rota',this.route.snapshot.params['id'])
 
     // this.route.params.subscribe((parametro: any) => {
@@ -79,5 +86,14 @@ export class OfertaComponent implements OnInit,OnDestroy {
     this.tempoObservableSubscription.unsubscribe()
     */
   }
+
+public adicionaritemCarrinho(oferta: Oferta):void{
+  /*interessanto no clique verificar se esse componente esta preenchido ou não se tem os valores a serem e*/
+
+  this.carrinhoService.incluirItem(this.oferta);
+  console.log(this.carrinhoService.exibirItens());
+
+  //console.log(this.oferta);
+}
 
 }
